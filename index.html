@@ -22,16 +22,27 @@ body{
   print-color-adjust:exact;
 }
 
+/* ── Responsive viewport ──────────────────────── */
+.cv-viewport{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  overflow-x:hidden;
+  padding:20px 0;
+}
+
 /* ── Page ───────────────────────────────────── */
 .cv{
   width:210mm;
   height:297mm;
-  margin:20px auto;
+  margin:0;
   background:#fff;
   display:grid;
   grid-template-columns:70mm 1fr;
   overflow:hidden;
   box-shadow:0 4px 24px rgba(0,0,0,.15);
+  flex-shrink:0;
+  transform-origin:top center;
 }
 
 /* ── Sidebar ─────────────────────────────────── */
@@ -172,6 +183,7 @@ body{
   font-size:9.5px;
   line-height:1.75;
   color:#3a3a3a;
+  text-align:justify;
 }
 .sum strong{color:var(--navy);font-weight:600;}
 
@@ -260,6 +272,7 @@ body{
   line-height:1.6;
   padding-left:10px;
   position:relative;
+  text-align:justify;
 }
 .bl li::before{
   content:'';
@@ -336,11 +349,17 @@ body{
     background:#fff;
     overflow:hidden;
   }
+  .cv-viewport{
+    width:auto;
+    padding:0;
+    overflow:visible;
+  }
   .cv{
     margin:0;
     box-shadow:none;
     width:210mm;
     height:297mm;
+    transform:none !important;
     page-break-after:avoid;
     page-break-inside:avoid;
     overflow:hidden;
@@ -350,6 +369,7 @@ body{
 </style>
 </head>
 <body>
+<div class="cv-viewport" id="cvViewport">
 <div class="cv">
 
   <!-- Sidebar -->
@@ -605,6 +625,7 @@ body{
 
   </main>
 </div>
+</div>
 
 <button class="print-btn" onclick="window.print()">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -614,6 +635,24 @@ body{
   </svg>
   Print / Save PDF
 </button>
+
+<script>
+(function(){
+  var cv = document.querySelector('.cv');
+  var viewport = document.getElementById('cvViewport');
+  function fit(){
+    var naturalWidth = cv.offsetWidth;
+    var naturalHeight = cv.offsetHeight;
+    var available = window.innerWidth - 24;
+    var scale = Math.min(1, available / naturalWidth);
+    cv.style.transform = 'scale(' + scale + ')';
+    viewport.style.height = Math.round(naturalHeight * scale + 40) + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('orientationchange', fit);
+  fit();
+})();
+</script>
 
 </body>
 </html>
