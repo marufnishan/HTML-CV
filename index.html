@@ -202,7 +202,7 @@ body{
 }
 
 /* Competencies */
-.cg{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.cg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
 .ct{
   border:1px solid #e8e8e8;
   border-left:3px solid #cdd7e4;
@@ -213,10 +213,22 @@ body{
   font-size:7.5px;font-weight:700;
   letter-spacing:.5px;text-transform:uppercase;
   color:#6b6b6b;margin-bottom:4px;
+  white-space:nowrap;
 }
 .ct-list{
+  list-style:none;
   font-size:9px;color:#333;
   line-height:1.75;
+}
+.ct-list li{
+  padding-left:9px;
+  position:relative;
+}
+.ct-list li::before{
+  content:'';
+  position:absolute;left:0;top:7px;
+  width:3px;height:3px;border-radius:50%;
+  background:#bbb;
 }
 
 /* Experience */
@@ -237,6 +249,8 @@ body{
   font-size:9.5px;font-weight:500;
   color:#555;margin-bottom:5px;
 }
+.job-co a{color:#555;text-decoration:none;}
+.job-co a:hover{color:var(--navy);}
 .bl{
   list-style:none;
   display:flex;flex-direction:column;gap:3px;
@@ -396,7 +410,7 @@ body{
       <div class="sk-group">
         <div class="sk-cat">Database</div>
         <div class="tags">
-          <span class="tag">MySQL</span><span class="tag">Supabase</span><span class="tag">Eloquent ORM</span>
+          <span class="tag">MySQL</span><span class="tag">Prisma</span><span class="tag">Supabase</span><span class="tag">Eloquent ORM</span>
         </div>
       </div>
     </div>
@@ -407,7 +421,8 @@ body{
         <div class="sk-cat">Workflow Tools</div>
         <div class="tags">
           <span class="tag">GoHighLevel (GHL)</span><span class="tag">N8N</span><span class="tag">Make.com</span>
-          <span class="tag">Power Automate</span>
+          <span class="tag">Power Automate</span><span class="tag">Retell AI</span><span class="tag">Housecall Pro</span>
+          <span class="tag">Appointwise</span>
         </div>
       </div>
       <div class="sk-group">
@@ -464,7 +479,7 @@ body{
         <strong>Full Stack Developer &amp; AI Automation Specialist</strong> with <strong>4+ years</strong> delivering
         production web platforms for clients locally and internationally, plus <strong>1+ years</strong> building
         intelligent automation workflows. Proficient in <strong>Laravel, Vue.js, React.js, Node.js, Next.js &amp; Tailwind CSS</strong>,
-        with databases on <strong>MySQL &amp; Supabase</strong> — from schema design to zero-downtime cloud deployment on
+        with databases on <strong>MySQL, Prisma &amp; Supabase</strong> — from schema design to zero-downtime cloud deployment on
         <strong>DigitalOcean, AWS S3 &amp; Heroku</strong>. Builds end-to-end automation pipelines with
         <strong>N8N, GoHighLevel (GHL) &amp; Make.com</strong> that replace manual processes.
       </p>
@@ -496,25 +511,37 @@ body{
       <div class="cg">
         <div class="ct">
           <div class="ct-title">Full Stack Development</div>
-          <div class="ct-list">
-            SPA &amp; SSR Architecture<br/>
-            REST API Design &amp; Integration<br/>
-            Laravel Eloquent ORM<br/>
-            JWT / OAuth Authentication<br/>
-            Database Schema Design<br/>
-            Component-Driven UI
-          </div>
+          <ul class="ct-list">
+            <li>SPA &amp; SSR Architecture</li>
+            <li>REST API Design &amp; Integration</li>
+            <li>Laravel Eloquent ORM</li>
+            <li>JWT / OAuth Authentication</li>
+            <li>Database Schema Design</li>
+            <li>Component-Driven UI</li>
+          </ul>
         </div>
         <div class="ct">
-          <div class="ct-title">Automation &amp; AI Integration</div>
-          <div class="ct-list">
-            N8N Workflow Automation — Lead Capture &amp; Nurture, Meta Ads Integration<br/>
-            Make.com Scenarios<br/>
-            GoHighLevel CRM Setup<br/>
-            Microsoft Power Automate<br/>
-            Retail Inventory Sync<br/>
-            Webhook &amp; API Integration
-          </div>
+          <div class="ct-title">Automation &amp; AI</div>
+          <ul class="ct-list">
+            <li>N8N Workflow Automation</li>
+            <li>Make.com Scenarios</li>
+            <li>GoHighLevel CRM Setup</li>
+            <li>Microsoft Power Automate</li>
+            <li>Retell AI Voice Automation</li>
+            <li>Housecall Pro Scheduling</li>
+            <li>Webhook &amp; API Integration</li>
+          </ul>
+        </div>
+        <div class="ct">
+          <div class="ct-title">DevOps &amp; Cloud</div>
+          <ul class="ct-list">
+            <li>CI/CD Pipeline Automation</li>
+            <li>Zero-Downtime Deployments</li>
+            <li>Cloud Infrastructure Mgmt</li>
+            <li>SSL, DNS &amp; Domain Setup</li>
+            <li>Server Monitoring &amp; Scaling</li>
+            <li>Git Workflow &amp; Version Control</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -527,11 +554,11 @@ body{
           <span class="job-title">Full Stack Developer &amp; Automation Engineer</span>
           <span class="job-date">Nov 2022 – Present</span>
         </div>
-        <div class="job-co">Ariya Network Solutions Inc. &nbsp;·&nbsp; Brampton, Ontario, Canada &nbsp;(Remote)</div>
+        <div class="job-co"><a href="https://aniyanetworks.net/" target="_blank">Aniya Network Solutions Inc.</a> &nbsp;·&nbsp; Brampton, Ontario, Canada &nbsp;(Remote)</div>
         <ul class="bl">
-          <li>Architected and shipped <strong>5+ full-stack platforms</strong> using Laravel, Vue.js, Nuxt.js, React.js &amp; Node.js — deployed on <strong>DigitalOcean &amp; Heroku</strong> with CI/CD pipelines.</li>
+          <li>Architected and shipped <strong>5+ full-stack platforms</strong> using Laravel, Vue.js, Nuxt.js, React.js &amp; Node.js — deployed on <strong>DigitalOcean, Heroku &amp; GoDaddy</strong> with CI/CD pipelines.</li>
+          <li>Configured <strong>GoHighLevel (GHL)</strong> CRM with automated SMS/email follow-up sequences and sales funnels, improving lead conversion for 10+ clients.</li>
           <li>Built <strong>N8N &amp; Make.com</strong> automation workflows replacing manual data-entry processes, saving clients <strong>15+ hours/week</strong> (~60% effort reduction).</li>
-          <li>Configured <strong>GoHighLevel (GHL)</strong> CRM with automated SMS/email follow-up sequences and sales funnels, improving lead conversion for 3+ clients.</li>
           <li>Deployed <strong>Power Automate</strong> flows for Microsoft 365 environments — SharePoint approvals, Outlook triggers, and Teams notifications.</li>
           <li>Managed <strong>DigitalOcean</strong> Droplets, Managed Databases &amp; <strong>Heroku</strong> pipelines — SSL, DNS, GitHub Actions CI/CD, zero-downtime releases.</li>
           <li>Key deliverables: <a href="https://nistonline.ca">nistonline.ca</a> (School Mgmt) &middot; <a href="https://ntricvisa.ca">ntricvisa.ca</a> (Visa App) &middot; <a href="https://nsrc.ca">nsrc.ca</a> (LMS) &middot; <a href="https://www.theisac.ca">theisac.ca</a> (Education) &middot; <a href="https://hub.dvrealty.ca">hub.dvrealty.ca</a> (Real Estate)</li>
