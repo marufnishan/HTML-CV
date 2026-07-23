@@ -284,6 +284,30 @@ body{
 .bl li a{color:var(--gold-deep);font-weight:600;border-bottom:1px solid var(--gold);text-decoration:none;}
 .bl li a:hover{color:var(--navy);}
 
+/* Key deliverables tags */
+.bl li.dlv-item{padding-left:0;text-align:left;}
+.bl li.dlv-item::before{content:none;}
+.dlv-label{
+  font-size:7.5px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  color:#6b6b6b;margin-bottom:6px;
+}
+.dlv-list{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.dlv-tag{
+  display:flex;flex-direction:column;
+  background:var(--gold-tint);
+  border:1px solid var(--gold);
+  border-radius:6px;
+  padding:5px 7px;
+  text-decoration:none;
+  transition:background .15s;
+  text-align:left;
+}
+.dlv-tag:hover{background:#fff;}
+.dlv-name{font-size:7.5px;font-weight:700;color:var(--gold-deep);line-height:1.3;word-break:break-word;text-align:left;}
+.dlv-desc{font-size:6.8px;font-weight:400;color:#666;line-height:1.4;margin-top:2px;text-align:left;}
+.dlv-tools{font-size:6.5px;font-weight:600;color:var(--navy);line-height:1.4;margin-top:3px;padding-top:3px;border-top:1px solid var(--gold);text-align:left;}
+
 /* Projects */
 .pg{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
 .pc{
@@ -523,7 +547,7 @@ body{
       </div>
       <div class="stat">
         <div class="stat-n">10+</div>
-        <div class="stat-l">Production<br/>Apps Delivered</div>
+        <div class="stat-l">Production<br/>Application Delivered</div>
       </div>
       <div class="stat">
         <div class="stat-n">60%</div>
@@ -591,7 +615,51 @@ body{
           <li>Built <strong>N8N &amp; Make.com</strong> automation workflows replacing manual data-entry processes, saving clients <strong>15+ hours/week</strong> (~60% effort reduction).</li>
           <li>Deployed <strong>Power Automate</strong> flows for Microsoft 365 environments — SharePoint approvals, Outlook triggers, and Teams notifications.</li>
           <li>Managed <strong>DigitalOcean</strong> Droplets, Managed Databases, <strong>AWS S3</strong> storage &amp; <strong>Heroku</strong> pipelines — SSL, DNS, GitHub Actions CI/CD, zero-downtime releases.</li>
-          <li>Key deliverables: <a href="https://ansghl.netlify.app/" target="_blank">ansghl.netlify.app</a> (Lead Nurture, Custom Chatbot, Email Campaigns, Follow-Up, Review Collection &amp; Social Media Auto-Reply via N8N) &middot; <a href="https://ansleadengine.netlify.app/" target="_blank">ansleadengine.netlify.app</a> (Lead Collection, Phone/Email Validation &amp; Website Audit Automation via N8N) &middot; <a href="https://hub.dvrealty.ca" target="_blank">hub.dvrealty.ca</a> (Real Estate CRM) &middot; <a href="https://www.dreamvalleyrealty.ca/" target="_blank">dreamvalleyrealty.ca</a> (Real Estate Website) &middot; <a href="https://crt.academy/" target="_blank">crt.academy</a> (LMS) &middot; <a href="https://www.theisac.ca/" target="_blank">theisac.ca</a> (Islamic Education) &middot; <a href="https://nsricvisa.ca/" target="_blank">nsricvisa.ca</a> (Visa Processing CRM) &middot; <a href="https://web.nistonline.ca/" target="_blank">web.nistonline.ca</a> (School Mgmt System)</li>
+          <li class="dlv-item">
+            <div class="dlv-label">Key Deliverables</div>
+            <div class="dlv-list">
+              <a class="dlv-tag" href="https://ansghl.netlify.app/" target="_blank">
+                <span class="dlv-name">ansghl.netlify.app</span>
+                <span class="dlv-desc">Lead Nurture, Custom Chatbot, Email Campaigns, Follow-Up, Review Collection &amp; Social Media Auto-Reply</span>
+                <span class="dlv-tools">N8N &middot; React &middot; Tailwind &middot; Supabase</span>
+              </a>
+              <a class="dlv-tag" href="https://ansleadengine.netlify.app/" target="_blank">
+                <span class="dlv-name">ansleadengine.netlify.app</span>
+                <span class="dlv-desc">Lead Collection, Phone/Email Validation &amp; Website Audit Automation</span>
+                <span class="dlv-tools">Apify &middot; N8N</span>
+              </a>
+              <a class="dlv-tag" href="https://hub.dvrealty.ca" target="_blank">
+                <span class="dlv-name">hub.dvrealty.ca</span>
+                <span class="dlv-desc">Real Estate CRM</span>
+                <span class="dlv-tools">React &middot; Node.js &middot; Tailwind &middot; MySQL &middot; DigitalOcean &middot; AWS S3 Storage</span>
+              </a>
+              <a class="dlv-tag" href="https://www.dreamvalleyrealty.ca/" target="_blank">
+                <span class="dlv-name">dreamvalleyrealty.ca</span>
+                <span class="dlv-desc">Real Estate Website</span>
+                <span class="dlv-tools">React &middot; Tailwind &middot; Realtor API</span>
+              </a>
+              <a class="dlv-tag" href="https://crt.academy/" target="_blank">
+                <span class="dlv-name">crt.academy</span>
+                <span class="dlv-desc">LMS</span>
+                <span class="dlv-tools">Laravel &middot; MySQL &middot; Bootstrap</span>
+              </a>
+              <a class="dlv-tag" href="https://www.theisac.ca/" target="_blank">
+                <span class="dlv-name">theisac.ca</span>
+                <span class="dlv-desc">Islamic Education</span>
+                <span class="dlv-tools">Nuxt.js &middot; Tailwind &middot; MySQL</span>
+              </a>
+              <a class="dlv-tag" href="https://nsricvisa.ca/" target="_blank">
+                <span class="dlv-name">nsricvisa.ca</span>
+                <span class="dlv-desc">Visa Processing CRM and Website</span>
+                <span class="dlv-tools">Vue.js &middot; Laravel &middot; MySQL &middot; Tailwind</span>
+              </a>
+              <a class="dlv-tag" href="https://web.nistonline.ca/" target="_blank">
+                <span class="dlv-name">web.nistonline.ca</span>
+                <span class="dlv-desc">School Mgmt System</span>
+                <span class="dlv-tools">Vue.js &middot; Laravel &middot; MySQL &middot; Tailwind</span>
+              </a>
+            </div>
+          </li>
         </ul>
       </div>
     </section>
