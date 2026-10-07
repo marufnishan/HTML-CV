@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Mail, MapPin, Phone, Send } from 'lucide-react'
+import { Mail, MapPin, Phone, RefreshCw, Send, ShieldCheck } from 'lucide-react'
 import Section from './Section'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { sendMessage } from '../lib/api'
@@ -7,8 +7,29 @@ import { sendMessage } from '../lib/api'
 const inputClass =
   'w-full rounded-xl border border-white/10 bg-ink px-4 py-3 text-sm text-white placeholder:text-zinc-500 transition focus:border-primary focus:ring-2 focus:ring-primary/30 focus:outline-none'
 
+const randomDigit = () => Math.floor(Math.random() * 9) + 1
+
+// Simple equation captcha to stop basic spam bots. Client-side only — once the
+// form saves to Supabase, add server-side protection as well.
+function newCaptcha() {
+  const op = ['+', '−', '×'][Math.floor(Math.random() * 3)]
+  let a = randomDigit()
+  let b = randomDigit()
+  if (op === '−' && b > a) [a, b] = [b, a]
+  const answer = op === '+' ? a + b : op === '−' ? a - b : a * b
+  return { question: `${a} ${op} ${b}`, answer }
+}
+
 export default function Contact({ profile }) {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [captcha, setCaptcha] = useState(newCaptcha)
+  const [captchaInput, setCaptchaInput] = useState('')
+  const [captchaError, setCaptchaError] = useState('')
+
+  function refreshCaptcha() {
+    setCaptcha(newCaptcha())
+    setCaptchaInput('')
+  }
 
   const contacts = [
     { icon: Mail, label: 'Email', value: profile.email, href: `mailto:${profile.email}` },
@@ -22,7 +43,14 @@ export default function Contact({ profile }) {
 
   function submit(e) {
     e.preventDefault()
+    if (Number(captchaInput) !== captcha.answer) {
+      setCaptchaError('Wrong answer — please solve the new equation.')
+      refreshCaptcha()
+      return
+    }
+    setCaptchaError('')
     sendMessage(form, profile.email)
+    refreshCaptcha()
   }
 
   return (
@@ -80,6 +108,42 @@ export default function Contact({ profile }) {
               className={inputClass}
               aria-label="Message"
             />
+            <div>
+              <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-ink p-2 pl-4">
+                <ShieldCheck className="size-4 shrink-0 text-accent" />
+                <label htmlFor="captcha" className="text-sm whitespace-nowrap text-zinc-400">
+                  Solve: <span className="font-mono text-base font-semibold text-white">{captcha.question} =</span>
+                </label>
+                <input
+                  id="captcha"
+                  required
+                  inputMode="numeric"
+                  pattern="-?[0-9]*"
+                  autoComplete="off"
+                  placeholder="?"
+                  value={captchaInput}
+                  onChange={(e) => {
+                    setCaptchaInput(e.target.value)
+                    setCaptchaError('')
+                  }}
+                  className="w-16 min-w-0 rounded-lg border border-white/10 bg-surface px-3 py-2 text-center font-mono text-sm text-white placeholder:text-zinc-500 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:outline-none"
+                  aria-invalid={Boolean(captchaError)}
+                  aria-describedby="captcha-error"
+                />
+                <button
+                  type="button"
+                  onClick={refreshCaptcha}
+                  className="ml-auto grid size-9 shrink-0 place-items-center rounded-lg text-zinc-400 transition hover:bg-white/5 hover:text-white"
+                  aria-label="New equation"
+                  title="New equation"
+                >
+                  <RefreshCw className="size-4" />
+                </button>
+              </div>
+              <p id="captcha-error" aria-live="polite" className="mt-2 min-h-5 text-sm text-rose-400">
+                {captchaError}
+              </p>
+            </div>
             <button
               type="submit"
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-primary to-accent px-5 py-3.5 text-sm font-semibold text-ink shadow-lg shadow-primary/25 transition hover:opacity-90"

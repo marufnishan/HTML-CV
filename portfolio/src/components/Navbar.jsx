@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { ArrowRight, Menu, X } from 'lucide-react'
 
 const links = [
   { id: 'about', label: 'About' },
@@ -67,9 +67,10 @@ export default function Navbar({ name }) {
 
         <a
           href="#contact"
-          className="hidden rounded-lg bg-white px-4 py-2 text-sm font-semibold text-ink transition hover:bg-zinc-200 md:inline-block"
+          className="hire-btn group relative hidden items-center gap-1.5 overflow-hidden rounded-lg px-4 py-2 text-sm font-semibold text-ink transition hover:scale-105 md:inline-flex"
         >
           Hire me
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
         </a>
 
         <button
@@ -96,6 +97,15 @@ export default function Navbar({ name }) {
               </a>
             </li>
           ))}
+          <li className="pt-2">
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="hire-btn relative flex items-center justify-center gap-1.5 overflow-hidden rounded-lg px-4 py-2.5 text-sm font-semibold text-ink"
+            >
+              Hire me <ArrowRight className="size-4" />
+            </a>
+          </li>
         </ul>
       )}
     </header>
