@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* All theme colors live here — change these to re-color the whole site. */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, sans-serif;
+
+  --color-ink: #0a0a12;
+  --color-surface: #11111c;
+  --color-surface-2: #181826;
+  --color-primary: #8b5cf6;
+  --color-primary-soft: #a78bfa;
+  --color-accent: #22d3ee;
+
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink font-sans text-zinc-300 antialiased;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+.text-gradient {
+  @apply bg-linear-to-r from-primary-soft to-accent bg-clip-text text-transparent;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at top, black 30%, transparent 75%);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-marquee { animation: none; }
+}
